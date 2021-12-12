@@ -1,30 +1,30 @@
 import { Card } from "../model/card.js";
 import { OK, NOT_FOUND, FAIL } from "../shared/response.js";
 
-const createCard = async (req, res, next) => {
+const generateCard = async (req, res, next) => {
   try {
     const bodyData = req.body;
-    let { label, type, isRequired, count} = bodyData;
-    if (type !== '')
-    console.log(count)
-    if (label !== "" && type !== "" && isRequired !== "") {
-      const card = new Card(bodyData);
-      const result = await Card.create(card);
-      console.log(count)
-      return res.json(OK([result]));
-    }
-    return res.json(FAIL([]))
+    const card = new Card(bodyData);
+    const result = await Card.create(card);
+    return res.json(OK([result]));
   } catch (e) {
     return res.json(FAIL([]));
   }
 };
 
 const deleteCard = async (req, res, next) => {
-    try {
-        
-    } catch (error) {
-        
-    }
-}
+  try {
+  } catch (error) {}
+};
 
-export { createCard };
+const getSingleCard = async (req, res, next) => {
+  try {
+    const cardId = req.params._id;
+    const result = await Card.find({ _id: cardId });
+    return res.json(OK([result]));
+  } catch (e) {
+    return res.json(FAIL([]));
+  }
+};
+
+export { generateCard, getSingleCard };

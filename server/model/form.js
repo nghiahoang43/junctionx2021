@@ -1,8 +1,10 @@
 import mongoose from "mongoose";
 
-const formSchema = mongoose.Schema({
+const formSchema = new mongoose.Schema({
   title: String,
-  cards: [String],
+  cards: [mongoose.Schema.Types.ObjectId],
+  isActive: Boolean,
+  allCard: [],
 });
 
 export const Form = mongoose.model("form", formSchema);

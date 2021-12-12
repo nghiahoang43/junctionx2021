@@ -1,7 +1,8 @@
 import express from "express";
-import { createCard } from "../controller/card.js";
+import { generateCard, getSingleCard } from "../controller/card.js";
 const router = express.Router();
 
-router.post("/create", createCard);
+router.post("/create", generateCard);
+router.get("/:_id", getSingleCard);
 
 export default router;
